@@ -1,7 +1,7 @@
 src/models_.25/
 CNN/
 Book/
-src/*.py
+src/Other_script_folder/
 src/*.xlsx
 src/*.png
 src/bootstrap/

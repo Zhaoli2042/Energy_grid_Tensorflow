@@ -19,5 +19,8 @@ src/models/shit/
 src/models/041920/
 src/models/1e6_data/
 src/models/041520/
-src/
+src/models/*.png
+src/models/*.h5
+src/models/models_for_pick/
+src/models/041620_diff_seed/
 *.png

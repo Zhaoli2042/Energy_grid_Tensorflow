@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import glob
-file_dir = 'all_8000_outliers/isotherm/correct/'
+file_dir = 'all_8000_outliers/isotherm/new_isotherm/'
 list_files=(glob.glob(file_dir + "*.csv"))
 pc_file = open(file_dir + 'pc_structures.txt', 'w')
 for a in list_files:
@@ -17,13 +17,15 @@ for a in list_files:
    print(structure_name)
    raw_dataset = raw_dataset.sort_values(by = ['Pres'])
    plot_limit_y = max(raw_dataset['Loading'])
-   plot_limit_x = max(raw_dataset['Pres'])
+   plot_limit_x = max(raw_dataset['Pres']/1e5)
    plt.figure(figsize = (12,10), dpi = 800)
    plt.text(0.05*plot_limit_x,0.95*plot_limit_y, "Testing Data:" + structure_name,
             fontsize = 20)
-   plt.plot(raw_dataset['Pres'], raw_dataset['Loading'])
-   plt.ylabel('Loading (cm3/cm3)')
-   plt.xlabel('Pressure (Pa)')
+   plt.plot(raw_dataset['Pres']/1e5, raw_dataset['Loading'], '-bo')
+   plt.ylabel(r"GCMC Loading [cm$^{\rm 3}$/cm$^{\rm 3}$]", fontsize = 20)
+   plt.xlabel('Pressure [Bar]', fontsize = 20)
+   plt.xticks(fontsize = 20)
+   plt.yticks(fontsize = 20)
    plt.savefig(file_dir + "Isotherm_" + structure_name + ".png")
    plt.clf()
    # also detect the largest step change in the isotherms

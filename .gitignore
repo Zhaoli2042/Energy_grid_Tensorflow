@@ -1,7 +1,19 @@
 src/models_.25/
+Data/
 CNN/
 Book/
+Outlier_stuff_isotherm_analysis/*.csv
+Outlier_stuff_isotherm_analysis/*.png
+Outlier_stuff_isotherm_analysis/CoRE_outliers/
+Outlier_stuff_isotherm_analysis/another_set/
+Outlier_stuff_isotherm_analysis/all_8000_outliers/*LmpData
+Outlier_stuff_isotherm_analysis/all_8000_outliers/isotherm/correct/
+Outlier_stuff_isotherm_analysis/all_8000_outliers/isotherm/desorption_files/
+Outlier_stuff_isotherm_analysis/eight_times_larger/
 src/Other_script_folder/
+src/.asdasd/
+src/.ipynb_checkpoints/
+src/__pycache__/
 src/*.xlsx
 src/*.png
 src/bootstrap/
@@ -31,4 +43,5 @@ src/models/models_holdouts_041920/4/
 src/models/models_holdouts_041920/5/
 src/models/models_holdouts_041920/6/
 src/models/models_holdouts_041920/7/
+TMMC/
 *.png

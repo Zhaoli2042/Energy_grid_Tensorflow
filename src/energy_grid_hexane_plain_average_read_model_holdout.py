@@ -44,7 +44,7 @@ def get_run_logdir():
 run_logdir = get_run_logdir()
 
 #model_dir = 'models/1e6_data/'
-model_dir = 'models/models_holdouts_041920/'
+model_dir = 'models/models_holdouts_041920/test_modify_plot/'
 # try tensorflow probability to access the uncertainties of the predictions
 
 # I renamed the energy grid columns, easier for pd to read
@@ -59,7 +59,7 @@ def norm(x, trainset):
   return (x - trainset.mean()) / trainset.std()
 
 n_holdouts = 8
-for part in range(6, n_holdouts):
+for part in range(7, n_holdouts):
   if (part == (n_holdouts - 1)):
     test_dataset = dataset.loc[part*1000:dataset.shape[0], :]
   else:
@@ -103,19 +103,27 @@ for part in range(6, n_holdouts):
            fontsize = 20)
   plt.text(10,160, str(normed_test_data.shape[0]) + " Points", 
            fontsize = 20)
-  plt.text(100,20, "RMSE=" + RMSE + ' cm3/cm3', 
+  plt.text(100,20, "RMSE=" + RMSE + r' cm$^{\rm 3}$/cm$^{\rm 3}$', 
            fontsize = 20)
-  plt.text(100,10, "MAE=" + MAE + " cm3/cm3", 
+  plt.text(100,10, "MAE=" + MAE + r" cm$^{\rm 3}$/cm$^{\rm 3}$", 
            fontsize = 20)
   plt.text(110, 170, "Model_Average", fontsize = 20)
   plt.scatter(test_labels, averaged_pred, c = pred_test_set.T.std(),
               vmin = 0, vmax = np.max(pred_test_set.T.std()))
-  plt.xlabel('Test True Values [cm3/cm3]')
-  plt.ylabel('Test Mean Predictions [cm3/cm3]')
+  plt.xlabel(r'Test True Values [cm$^{\rm 3}$/cm$^{\rm 3}$]', fontsize = 20)
+  plt.ylabel(r'Test Mean Predictions [cm$^{\rm 3}$/cm$^{\rm 3}$]', fontsize = 20)
   lims = [0, 180]
   plt.xlim(lims)
   plt.ylim(lims)
-  plt.colorbar()
+  plt.xticks(fontsize = 20)
+  plt.yticks(fontsize = 20)
+  cbar = plt.colorbar()
+  cbar.set_ticks([0, 10, 20, 30, 40, 50, 60])
+  cbar.set_ticklabels([r"0 cm$^{\rm 3}$/cm$^{\rm 3}$", r"10 cm$^{\rm 3}$/cm$^{\rm 3}$",
+                       r"20 cm$^{\rm 3}$/cm$^{\rm 3}$", r"30 cm$^{\rm 3}$/cm$^{\rm 3}$",
+                       r"40 cm$^{\rm 3}$/cm$^{\rm 3}$", r"50 cm$^{\rm 3}$/cm$^{\rm 3}$",
+                       r"60 cm$^{\rm 3}$/cm$^{\rm 3}$"])
+  cbar.ax.tick_params(labelsize = 20)
   _ = plt.plot(lims, lims)
   plt.savefig(new_model_dir + "Model_Average.png")
   plt.clf()
@@ -132,19 +140,27 @@ for part in range(6, n_holdouts):
              fontsize = 20)
     plt.text(10,160, str(normed_test_data.shape[0]) + " Points", 
              fontsize = 20)
-    plt.text(100,20, "RMSE=" + RMSE + ' cm3/cm3', 
+    plt.text(100,20, "RMSE=" + RMSE + r' cm$^{\rm 3}$/cm$^{\rm 3}$', 
              fontsize = 20)
-    plt.text(100,10, "MAE=" + MAE + " cm3/cm3", 
+    plt.text(100,10, "MAE=" + MAE + r" cm$^{\rm 3}$/cm$^{\rm 3}$", 
              fontsize = 20)
     plt.text(140, 170, "Model" + str(i + 1), fontsize = 20)
     plt.scatter(test_labels, pred_test_set['Pred' + str(i)], c = pred_test_set.T.std(),
                 vmin = 0, vmax = np.max(pred_test_set.T.std()))
-    plt.xlabel('Test True Values [cm3/cm3]')
-    plt.ylabel('Test Predictions [cm3/cm3]')
+    plt.xlabel(r'Test True Values [cm$^{\rm 3}$/cm$^{\rm 3}$]', fontsize = 20)
+    plt.ylabel(r'Test Predictions [cm$^{\rm 3}$/cm$^{\rm 3}$]', fontsize = 20)
     lims = [0, 180]
+    plt.xticks(fontsize = 20)
+    plt.yticks(fontsize = 20)
     plt.xlim(lims)
     plt.ylim(lims)
-    plt.colorbar()
+    cbar = plt.colorbar()
+    cbar.set_ticks([0, 10, 20, 30, 40, 50, 60])
+    cbar.set_ticklabels([r"0 cm$^{\rm 3}$/cm$^{\rm 3}$", r"10 cm$^{\rm 3}$/cm$^{\rm 3}$",
+                         r"20 cm$^{\rm 3}$/cm$^{\rm 3}$", r"30 cm$^{\rm 3}$/cm$^{\rm 3}$",
+                         r"40 cm$^{\rm 3}$/cm$^{\rm 3}$", r"50 cm$^{\rm 3}$/cm$^{\rm 3}$",
+                         r"60 cm$^{\rm 3}$/cm$^{\rm 3}$"])
+    cbar.ax.tick_params(labelsize = 20)
     _ = plt.plot(lims, lims)
     plt.savefig(new_model_dir + "Model_" + str(i + 1) + ".png")
     plt.clf()

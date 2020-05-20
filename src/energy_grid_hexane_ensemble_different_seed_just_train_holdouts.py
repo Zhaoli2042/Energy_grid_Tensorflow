@@ -41,7 +41,7 @@ def get_run_logdir():
 
 
 run_logdir = get_run_logdir()
-model_dir = 'models/models_holdouts_041920/'
+model_dir = 'models/models_holdouts_041920/test_modify_plot/'
 read_filename = model_dir + "permed_latest_tob_simulation_topo_1e6_041920.csv"
 # try tensorflow probability to access the uncertainties of the predictions
 
@@ -163,10 +163,10 @@ def fit_with_model_diff_act(act_fxn, iteration, new_dir):
 
 #n_holdouts = 8
 # holdout 3 has 2 models not good, retrain
-n_holdouts = 4
-just_train = True # if train all models, make it false
-n_members = 2
-for part in range(3, n_holdouts):
+n_holdouts = 8
+just_train = False # if train all models, make it false
+n_members = 10
+for part in range(7, n_holdouts):
   if ((part == (n_holdouts - 1)) and (not just_train)):
     test_dataset = dataset.loc[part*1000:dataset.shape[0], :]
   else:
@@ -191,7 +191,7 @@ for part in range(3, n_holdouts):
   
   
   pred_test_set = pd.DataFrame({'Pred1':[]})
-  for a in range(0,n_members):
+  for a in range(2,n_members):
       # start with the normed test set: it is untouched!
       print("Session: ", a)
       test_dataset_huber = fit_with_model_diff_act("selu", a, new_model_dir)

@@ -23,4 +23,12 @@ src/models/*.png
 src/models/*.h5
 src/models/models_for_pick/
 src/models/041620_diff_seed/
+src/models/models_holdouts_041920/0/
+src/models/models_holdouts_041920/1/
+src/models/models_holdouts_041920/2/
+src/models/models_holdouts_041920/3/
+src/models/models_holdouts_041920/4/
+src/models/models_holdouts_041920/5/
+src/models/models_holdouts_041920/6/
+src/models/models_holdouts_041920/7/
 *.png
